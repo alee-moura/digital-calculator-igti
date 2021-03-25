@@ -1,7 +1,7 @@
 .screen {
     display: grid;
     grid-template-rows: 10fr 80fr 10fr;
-    grid-template-columns: 35fr 30fr 35fr;
+    grid-template-columns: 37fr 26fr 37fr;
     height: 100vh;
 }
 
@@ -11,6 +11,10 @@
     border: 1px solid #000000;
     border-radius: 5%;
     padding: 1em;
+    max-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .button {
@@ -19,4 +23,15 @@
     width: 3em;
     height: 3em;
     border: 1px solid #000000;
+    margin: 1em;
+    background-color: #a52a2a;
+    color: #ffffff;
+}
+
+.buttonsContainers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #deb887;
 }
