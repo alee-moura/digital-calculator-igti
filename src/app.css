@@ -15,6 +15,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .button {
@@ -26,6 +27,7 @@
     margin: 1em;
     background-color: #a52a2a;
     color: #ffffff;
+    cursor: pointer;
 }
 
 .buttonsContainers {
@@ -34,4 +36,12 @@
     flex-wrap: wrap;
     justify-content: center;
     background-color: #deb887;
+}
+
+.display {
+    display: flex;
+    justify-content: flex-end;
+    border: 1px solid #000000;
+    background-color: #ee82ee;
+    color: #ffffff;
 }
