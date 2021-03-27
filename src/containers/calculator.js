@@ -3,19 +3,43 @@ import { Button } from "../components/button";
 import Display from "../components/display"
 
 class Calculator extends Component {
-    initialState = {firstValue:0, secondValue:0}
+    initialState = {firstValue:0, secondValue:0, operator:1, isSum:false}
     constructor(props) {
         super(props);
         this.state = this.initialState;
     }
 
     putValue = (value) => {
-        const lastValue = this.state.firstValue;
-        this.setState({firstValue:(lastValue*10)+value})
+        const lastValue = this.state.operator===1 ? this.state.firstValue : this.state.secondValue;
+        switch (this.state.operator) {
+            case 1:
+                this.setState({firstValue:(lastValue*10) + value});
+            break;
+            case 2:
+                this.setState({secondValue:(lastValue*10) + value});
+            break;
+        }
     }
 
     getValue = () => {
-        return this.state.firstValue;
+        const {firstValue, secondValue, isSum, operator} = this.state;
+        switch(operator) {
+            case 1: return firstValue;
+            case 2: return secondValue;
+            case 3: return isSum ? firstValue + secondValue : firstValue - secondValue;
+        }
+    }
+
+    pickOperation = (isSum) => {
+        this.setState({operator:2, isSum})
+    }
+
+    execOperation = () => {
+        this.setState({operator:3})
+    }
+
+    clear = () => {
+        this.setState(this.initialState);
     }
 
     render() {
@@ -35,10 +59,10 @@ class Calculator extends Component {
                     <Button display={"8"} onClick={() => this.putValue(8)}/>
                     <Button display={"9"} onClick={() => this.putValue(9)}/>
                     <Button display={"0"} onClick={() => this.putValue(0)}/>
-                    <Button display={"+"} onClick={() => this.putValue()}/>
-                    <Button display={"="} onClick={() => this.putValue()}/>
-                    <Button display={"-"} onClick={() => this.putValue()}/>
-                    <Button display={"C"} onClick={() => this.putValue()}/>
+                    <Button display={"+"} onClick={() => this.pickOperation(true)}/>
+                    <Button display={"-"} onClick={() => this.pickOperation(false)}/>
+                    <Button display={"="} onClick={() => this.execOperation()}/>
+                    <Button display={"C"} onClick={() => this.clear()}/>
                 </div>
             </div>
         )
