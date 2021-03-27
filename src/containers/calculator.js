@@ -10,7 +10,7 @@ class Calculator extends Component {
     }
 
     putValue = (value) => {
-        const lastValue = this.state.operator===1 ? this.state.firstValue : this.state.secondValue;
+        const lastValue = this.state.operator === 1 ? this.state.firstValue : this.state.secondValue;
         switch (this.state.operator) {
             case 1:
                 this.setState({firstValue:(lastValue*10) + value});
@@ -43,25 +43,27 @@ class Calculator extends Component {
     }
 
     render() {
+        const {operator} = this.state;
+
         return(
             <div className={"calculator"}>
                 <div>
                     <Display value={this.getValue()}/>
                 </div>
                 <div className={"buttonsContainers"}>
-                    <Button display={"1"} onClick={() => this.putValue(1)}/>
-                    <Button display={"2"} onClick={() => this.putValue(2)}/>
-                    <Button display={"3"} onClick={() => this.putValue(3)}/>
-                    <Button display={"4"} onClick={() => this.putValue(4)}/>
-                    <Button display={"5"} onClick={() => this.putValue(5)}/>
-                    <Button display={"6"} onClick={() => this.putValue(6)}/>
-                    <Button display={"7"} onClick={() => this.putValue(7)}/>
-                    <Button display={"8"} onClick={() => this.putValue(8)}/>
-                    <Button display={"9"} onClick={() => this.putValue(9)}/>
-                    <Button display={"0"} onClick={() => this.putValue(0)}/>
-                    <Button display={"+"} onClick={() => this.pickOperation(true)}/>
-                    <Button display={"-"} onClick={() => this.pickOperation(false)}/>
-                    <Button display={"="} onClick={() => this.execOperation()}/>
+                    <Button display={"1"} onClick={() => this.putValue(1)} disable={operator === 3}/>
+                    <Button display={"2"} onClick={() => this.putValue(2)} disable={operator === 3}/>
+                    <Button display={"3"} onClick={() => this.putValue(3)} disable={operator === 3}/>
+                    <Button display={"4"} onClick={() => this.putValue(4)} disable={operator === 3}/>
+                    <Button display={"5"} onClick={() => this.putValue(5)} disable={operator === 3}/>
+                    <Button display={"6"} onClick={() => this.putValue(6)} disable={operator === 3}/>
+                    <Button display={"7"} onClick={() => this.putValue(7)} disable={operator === 3}/>
+                    <Button display={"8"} onClick={() => this.putValue(8)} disable={operator === 3}/>
+                    <Button display={"9"} onClick={() => this.putValue(9)} disable={operator === 3}/>
+                    <Button display={"0"} onClick={() => this.putValue(0)} disable={operator === 3}/>
+                    <Button display={"+"} onClick={() => this.pickOperation(true)} disable={operator !== 1}/>
+                    <Button display={"-"} onClick={() => this.pickOperation(false)} disable={operator !== 1}/>
+                    <Button display={"="} onClick={() => this.execOperation()} disable={operator === 1}/>
                     <Button display={"C"} onClick={() => this.clear()}/>
                 </div>
             </div>

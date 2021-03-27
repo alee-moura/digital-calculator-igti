@@ -3,13 +3,17 @@ import React, { Component } from "react";
 export class Button extends Component {
 
     handleClick() {
-        if (this.props.onClick)
+        const {disable, onClick} = this.props
+
+        if ((onClick) && (!disable))
         this.props.onClick();
     }
 
     render() {
+        const cssButtonClass = this.props.disable ? "button disable" : "button";
+
         return (
-        <div className={"button"} onClick={this.handleClick.bind(this)}>
+        <div className={cssButtonClass} onClick={this.handleClick.bind(this)}>
             {this.props.display}
         </div>
         )

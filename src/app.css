@@ -45,3 +45,7 @@
     background-color: #ee82ee;
     color: #ffffff;
 }
+
+.disable {
+    background-color: grey;
+}
